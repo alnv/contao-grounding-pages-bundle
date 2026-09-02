@@ -1,0 +1,34 @@
+{
+  "name": "alnv/grounding-pages-bundle",
+  "type": "contao-bundle",
+  "license": "proprietary",
+  "description": "Catalog Manager for Contao CMS",
+  "keywords": ["grounding", "pages", "schema.org"],
+  "homepage": "https://catalog-manager.org",
+  "authors": [
+    {
+      "name": "Alexander Naumov",
+      "homepage": "https://alexandernaumov.de",
+      "role": "Developer"
+    }
+  ],
+  "support": {
+    "email": "mail@alexandernaumov.de",
+    "issues": "https://github.com/alnv/contao-catalog-manager-bundle/issues",
+    "wiki": "https://alexandernaumov.de/"
+  },
+  "autoload": {
+    "psr-4": {
+      "Alnv\\ContaoGroundingPagesBundle\\": "src/"
+    }
+  },
+  "require": {
+    "ext-json": "*",
+    "php": "^8.1",
+    "contao/core-bundle": "~5.0",
+    "terminal42/dcawizard": "^3.0"
+  },
+  "extra": {
+    "contao-manager-plugin": "Alnv\\ContaoGroundingPagesBundle\\ContaoManager\\Plugin"
+  }
+}
