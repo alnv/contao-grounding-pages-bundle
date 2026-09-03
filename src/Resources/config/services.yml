@@ -1,0 +1,15 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+  Alnv\ContaoGroundingPagesBundle\Pages\GroundingPageController:
+    tags: [ contao.page ]
+  Alnv\ContaoGroundingPagesBundle\EventListener\GetPageLayoutListener:
+    tags:
+      - { name: contao.hook, hook: getPageLayout }
+  Alnv\ContaoGroundingPagesBundle\EventListener\GeneratePageListener:
+    tags:
+      - { name: contao.hook, hook: generatePage }
+  Alnv\ContaoGroundingPagesBundle\InsertTags\GlobalsInertTag:
+    tags:
+      - { name: contao.hook, hook: replaceInsertTags }

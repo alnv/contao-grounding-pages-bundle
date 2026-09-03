@@ -4,7 +4,7 @@ use Contao\ArrayUtil;
 
 ArrayUtil::arrayInsert($GLOBALS['BE_MOD'], 1, [
     'grounding_page_bundle' => [
-        'projects' => [
+        'grounding_page' => [
             'name' => 'grounding_page',
             'tables' => [
                 'tl_grounding_page',

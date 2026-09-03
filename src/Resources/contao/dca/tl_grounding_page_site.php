@@ -16,7 +16,7 @@ $GLOBALS['TL_DCA']['tl_grounding_page_site'] = [
     'list' => [
         'sorting' => [
             'mode' => 4,
-            'fields' => ['name'],
+            'fields' => ['sorting'],
             'panelLayout' => 'filter;sort,search,limit',
             'headerFields' => ['name'],
             'child_record_callback' => function ($row) {
@@ -40,7 +40,7 @@ $GLOBALS['TL_DCA']['tl_grounding_page_site'] = [
     ],
     'palettes' => [
         '__selector__' => [],
-        'default' => 'name,alias'
+        'default' => 'name,alias;headline,description,text;structured_data'
     ],
     'subpalettes' => [],
     'fields' => [
@@ -78,6 +78,41 @@ $GLOBALS['TL_DCA']['tl_grounding_page_site'] = [
             ],
             'search' => true,
             'sql' => ['type' => 'string', 'length' => 255, 'default' => '']
+        ],
+        'headline' => [
+            'inputType' => 'inputUnit',
+            'options' => ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
+            'eval' => [
+                'tl_class' => 'w50',
+                'allowHtml' => true
+            ],
+            'sql' => "text NULL"
+        ],
+        'description' => [
+            'inputType' => 'textarea',
+            'eval' => [
+                'tl_class' => 'clr',
+                'allowHtml' => true
+            ],
+            'sql' => "text NULL"
+        ],
+        'text' => [
+            'inputType' => 'textarea',
+            'eval' => [
+                'tl_class' => 'clr',
+                'rte' => 'tinyMCE',
+                'allowHtml' => true
+            ],
+            'sql' => "text NULL"
+        ],
+        'structured_data' => [
+            'inputType' => 'textarea',
+            'eval' => [
+                'allowHtml' => true,
+                'class' => 'monospace',
+                'rte' => 'ace|html'
+            ],
+            'sql' => 'mediumtext NULL'
         ]
     ]
 ];

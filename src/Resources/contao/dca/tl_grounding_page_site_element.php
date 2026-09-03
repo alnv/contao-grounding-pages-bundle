@@ -15,7 +15,7 @@ $GLOBALS['TL_DCA']['tl_grounding_page_site_element'] = [
     'list' => [
         'sorting' => [
             'mode' => 4,
-            'fields' => ['name'],
+            'fields' => ['sorting'],
             'panelLayout' => 'filter;sort,search,limit',
             'headerFields' => ['name'],
             'child_record_callback' => function ($row) {
@@ -48,11 +48,12 @@ $GLOBALS['TL_DCA']['tl_grounding_page_site_element'] = [
     ],
     'palettes' => [
         '__selector__' => ['type'],
-        'default' => 'type,name'
+        'default' => 'type,name',
+        'key_figures' => 'type,name;headline,text;key_figures',
+        'faq' => 'type,name;headline,text;faqs',
+        'content' => 'type,name;headline,text',
     ],
-    'subpalettes' => [
-
-    ],
+    'subpalettes' => [],
     'fields' => [
         'id' => [
             'sql' => ['type' => 'integer', 'autoincrement' => true, 'notnull' => true, 'unsigned' => true]
@@ -70,11 +71,16 @@ $GLOBALS['TL_DCA']['tl_grounding_page_site_element'] = [
             'inputType' => 'select',
             'eval' => [
                 'tl_class' => 'w50',
+                'submitOnChange' => true,
                 'includeBlankOption' => true
             ],
             'reference' => &$GLOBALS['TL_LANG']['tl_suite_modules']['types'],
             'options_callback' => function () {
-                return [];
+                return [
+                    'key_figures' => 'Kerndaten',
+                    'faq' => 'FAQ',
+                    'content' => 'Text'
+                ];
             },
             'sql' => ['type' => 'string', 'length' => 128, 'default' => '']
         ],
@@ -90,5 +96,63 @@ $GLOBALS['TL_DCA']['tl_grounding_page_site_element'] = [
             'search' => true,
             'sql' => ['type' => 'string', 'length' => 255, 'default' => '']
         ],
+        'headline' => [
+            'inputType' => 'inputUnit',
+            'options' => ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
+            'eval' => [
+                'tl_class' => 'w50',
+                'allowHtml' => true
+            ],
+            'sql' => "text NULL"
+        ],
+        'text' => [
+            'inputType' => 'textarea',
+            'eval' => [
+                'tl_class' => 'clr',
+                'rte' => 'tinyMCE',
+                'allowHtml' => true
+            ],
+            'sql' => "text NULL"
+        ],
+        'key_figures' => [
+            'inputType' => 'multiColumnWizard',
+            'eval' => [
+                'decodeEntities' => true,
+                'tl_class' => 'clr',
+                'columnFields' => [
+                    'key' => [
+                        'label' => &$GLOBALS['TL_LANG']['tl_grounding_page_site_element']['key'],
+                        'inputType' => 'text',
+                        'eval' => ['style' => 'width:100%']
+                    ],
+                    'fact' => [
+                        'label' => &$GLOBALS['TL_LANG']['tl_grounding_page_site_element']['fact'],
+                        'inputType' => 'text',
+                        'eval' => ['style' => 'width:100%']
+                    ]
+                ]
+            ],
+            'sql' => 'blob NULL'
+        ],
+        'faqs' => [
+            'inputType' => 'multiColumnWizard',
+            'eval' => [
+                'decodeEntities' => true,
+                'tl_class' => 'clr',
+                'columnFields' => [
+                    'question' => [
+                        'label' => &$GLOBALS['TL_LANG']['tl_grounding_page_site_element']['question'],
+                        'inputType' => 'text',
+                        'eval' => ['style' => 'width:100%']
+                    ],
+                    'answer' => [
+                        'label' => &$GLOBALS['TL_LANG']['tl_grounding_page_site_element']['answer'],
+                        'inputType' => 'textarea',
+                        'eval' => ['style' => 'width:100%']
+                    ]
+                ]
+            ],
+            'sql' => 'blob NULL'
+        ]
     ]
 ];
