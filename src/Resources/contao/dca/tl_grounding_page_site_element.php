@@ -48,10 +48,10 @@ $GLOBALS['TL_DCA']['tl_grounding_page_site_element'] = [
     ],
     'palettes' => [
         '__selector__' => ['type'],
-        'default' => 'type,name',
-        'key_figures' => 'type,name;headline,text;key_figures',
-        'faq' => 'type,name;headline,text;faqs',
-        'content' => 'type,name;headline,text',
+        'default' => 'type',
+        'key_figures' => 'type,name,anchor;headline,sub_headline,text;key_figures',
+        'faq' => 'type,name,anchor;headline,sub_headline,text;faqs',
+        'content' => 'type,name,anchor;headline,sub_headline,text;contents',
     ],
     'subpalettes' => [],
     'fields' => [
@@ -96,7 +96,27 @@ $GLOBALS['TL_DCA']['tl_grounding_page_site_element'] = [
             'search' => true,
             'sql' => ['type' => 'string', 'length' => 255, 'default' => '']
         ],
+        'anchor' => [
+            'inputType' => 'text',
+            'eval' => [
+                'maxlength' => 255,
+                'tl_class' => 'w50',
+                'doNotCopy' => true,
+                'decodeEntities' => true
+            ],
+            'filter' => true,
+            'sql' => ['type' => 'string', 'length' => 255, 'default' => '']
+        ],
         'headline' => [
+            'inputType' => 'inputUnit',
+            'options' => ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
+            'eval' => [
+                'tl_class' => 'w50',
+                'allowHtml' => true
+            ],
+            'sql' => "text NULL"
+        ],
+        'sub_headline' => [
             'inputType' => 'inputUnit',
             'options' => ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
             'eval' => [
@@ -142,13 +162,41 @@ $GLOBALS['TL_DCA']['tl_grounding_page_site_element'] = [
                 'columnFields' => [
                     'question' => [
                         'label' => &$GLOBALS['TL_LANG']['tl_grounding_page_site_element']['question'],
-                        'inputType' => 'text',
+                        'inputType' => 'inputUnit',
+                        'options' => ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
                         'eval' => ['style' => 'width:100%']
                     ],
                     'answer' => [
                         'label' => &$GLOBALS['TL_LANG']['tl_grounding_page_site_element']['answer'],
                         'inputType' => 'textarea',
                         'eval' => ['style' => 'width:100%']
+                    ]
+                ]
+            ],
+            'sql' => 'blob NULL'
+        ],
+        'contents' => [
+            'inputType' => 'multiColumnWizard',
+            'eval' => [
+                'decodeEntities' => true,
+                'tl_class' => 'clr',
+                'columnFields' => [
+                    'headline' => [
+                        'label' => &$GLOBALS['TL_LANG']['tl_grounding_page_site_element']['headline'],
+                        'inputType' => 'inputUnit',
+                        'options' => ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
+                        'eval' => [
+                            'style' => 'width:50%'
+                        ]
+                    ],
+                    'text' => [
+                        'label' => &$GLOBALS['TL_LANG']['tl_grounding_page_site_element']['text'],
+                        'inputType' => 'textarea',
+                        'eval' => [
+                            'rte' => 'tinyMCE',
+                            'allowHtml' => true,
+                            'style' => 'width:50%'
+                        ]
                     ]
                 ]
             ],

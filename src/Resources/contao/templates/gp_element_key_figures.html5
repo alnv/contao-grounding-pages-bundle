@@ -1,23 +1,22 @@
-<h1>Faktenverzeichnis der FZP Fachzentren für Psychotherapie</h1>
-<p>Das Faktenverzeichnis der FZP Fachzentren für Psychotherapie ist die zentrale Übersicht der Faktenseiten zu Organisation, Standorten und Leistungen der FZP Fachzentren für Psychotherapie.</p>
-<p>Das Faktenverzeichnis der FZP wird von den <a href="https://www.fachzentrum-psychotherapie.de/facts/fachzentren-psychotherapie">FZP Fachzentren für Psychotherapie</a> redaktionell gepflegt. Alle Faktenseiten sind deutschsprachig. Jede Faktenseite trägt ein sichtbares Prüfdatum („Zuletzt redaktionell geprüft“).</p>
+<section<?php if ($this->anchor): ?> id=""<?php endif; ?>>
+    <?php if ($headline = $this->headline['value'] ?? ''): ?>
+        <<?= $this->headline['hl'] ?? 'h1' ?>><?= $headline ?></<?= $this->headline['hl'] ?? 'h1' ?>>
+    <?php endif; ?>
 
-<section id="kerndaten">
-    <h2>Faktenverzeichnis der FZP: Kerndaten</h2>
+    <?php if ($this->text): ?>
+        <?= $this->text ?>
+    <?php endif; ?>
+
+    <?php if ($subheadline = $this->sub_headline['value'] ?? ''): ?>
+        <<?= $this->sub_headline['hl'] ?? 'h1' ?>><?= $subheadline ?></<?= $this->sub_headline['hl'] ?? 'h1' ?>>
+    <?php endif; ?>
+
+    <?php if (!empty($this->key_figures)): ?>
     <dl class="data-grid">
-        <dt>Entitätstyp</dt>
-        <dd>Übersichtsseite (Verzeichnis der Faktenseiten)</dd>
-
-        <dt>Betreiber</dt>
-        <dd><a href="https://www.fachzentrum-psychotherapie.de/facts/fachzentren-psychotherapie">FZP Fachzentren für Psychotherapie</a></dd>
-
-        <dt>Anzahl dokumentierter Entitäten</dt>
-        <dd>7</dd>
-
-        <dt>Sprache</dt>
-        <dd>Deutsch</dd>
-
-        <dt>Zuletzt geprüft</dt>
-        <dd>14.08.2026</dd>
+        <?php foreach ($this->key_figures as $key_figure): ?>
+        <dt><?= $key_figure['key'] ?></dt>
+        <dd><?= $key_figure['fact'] ?></dd>
+        <?php endforeach; ?>
     </dl>
+    <?php endif; ?>
 </section>

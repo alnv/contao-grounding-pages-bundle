@@ -17,6 +17,26 @@ class Toolkit
         return self::replaceInsertTags($text);
     }
 
+    public static function parseRecursive(mixed $value): mixed
+    {
+        if (\is_array($value)) {
+            $result = [];
+
+            foreach ($value as $key => $item) {
+                $key = self::parseRecursive($key);
+                $result[$key] = self::parseRecursive($item);
+            }
+
+            return $result;
+        }
+
+        if (\is_string($value)) {
+            return self::parseString($value);
+        }
+
+        return $value;
+    }
+
     public static function parseSimpleTokens($strString, $arrData, $blnAllowHtml = true)
     {
         return System::getContainer()

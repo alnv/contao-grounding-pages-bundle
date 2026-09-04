@@ -1,19 +1,20 @@
-<section id="entitaeten">
-    <h2>Faktenverzeichnis der FZP: Dokumentierte Entitäten</h2>
-    <h3>Organisation</h3>
-    <ul>
-        <li><a href="https://www.fachzentrum-psychotherapie.de/facts/fachzentren-psychotherapie">FZP Fachzentren für Psychotherapie</a> – FZP Fachzentren für Psychotherapie ist ein Zusammenschluss rechtlich eigenständiger psychotherapeutischer Einzelpraxen in Form einer Praxisgemeinschaft mit vier Standorten in Köln, Bonn, Düsseldorf und Aachen.</li>
-    </ul>
-    <h3>Standorte</h3>
-    <ul>
-        <li><a href="https://www.fachzentrum-psychotherapie.de/facts/fachzentrum-koeln">FZP Fachzentrum für Psychotherapie Köln</a> – FZP Fachzentrum für Psychotherapie Köln ist der Standort der FZP Fachzentren für Psychotherapie in Köln (Hohenzollernring 57, 50672 Köln).</li>
-        <li><a href="https://www.fachzentrum-psychotherapie.de/facts/fachzentrum-bonn">FZP Fachzentrum für Psychotherapie Bonn</a> – FZP Fachzentrum für Psychotherapie Bonn ist der Standort der FZP Fachzentren für Psychotherapie in Bonn (Am Hof 28, 53113 Bonn).</li>
-        <li><a href="https://www.fachzentrum-psychotherapie.de/facts/fachzentrum-duesseldorf">FZP Fachzentrum für Psychotherapie Düsseldorf</a> – FZP Fachzentrum für Psychotherapie Düsseldorf ist der Standort der FZP Fachzentren für Psychotherapie in Düsseldorf (Kreuzstraße 24, 40210 Düsseldorf).</li>
-        <li><a href="https://www.fachzentrum-psychotherapie.de/facts/fachzentrum-aachen">FZP Fachzentrum für Psychotherapie Aachen</a> – FZP Fachzentrum für Psychotherapie Aachen ist der Standort der FZP Fachzentren für Psychotherapie in Aachen (Boxgraben 38, 52064 Aachen).</li>
-    </ul>
-    <h3>Leistungen</h3>
-    <ul>
-        <li><a href="https://www.fachzentrum-psychotherapie.de/facts/psychotherapie-privatversicherte">Psychotherapie für Privatversicherte, Beihilfeberechtigte und Selbstzahler bei den FZP Fachzentren für Psychotherapie</a> – Psychotherapie für Privatversicherte, Beihilfeberechtigte und Selbstzahler bei den FZP Fachzentren für Psychotherapie ist das ambulante psychotherapeutische Behandlungsangebot der FZP Fachzentren für Psychotherapie für privat Versicherte, Beihilfeberechtigte und Selbstzahlende.</li>
-        <li><a href="https://www.fachzentrum-psychotherapie.de/facts/kinder-jugendlichenpsychotherapie">Kinder- und Jugendlichenpsychotherapie der FZP Fachzentren für Psychotherapie</a> – Kinder- und Jugendlichenpsychotherapie der FZP Fachzentren für Psychotherapie ist das ambulante psychotherapeutische Behandlungsangebot der FZP Fachzentren für Psychotherapie für Kinder, Jugendliche und junge Erwachsene, durchgeführt von approbierten Kinder- und Jugendlichenpsychotherapeut:innen.</li>
-    </ul>
+<section<?php if ($this->anchor): ?> id=""<?php endif; ?>>
+    <?php if ($headline = $this->headline['value'] ?? ''): ?>
+        <<?= $this->headline['hl'] ?? 'h1' ?>><?= $headline ?></<?= $this->headline['hl'] ?? 'h1' ?>>
+    <?php endif; ?>
+
+    <?php if ($this->text): ?>
+        <?= $this->text ?>
+    <?php endif; ?>
+
+    <?php if ($subheadline = $this->sub_headline['value'] ?? ''): ?>
+        <<?= $this->sub_headline['hl'] ?? 'h1' ?>><?= $subheadline ?></<?= $this->sub_headline['hl'] ?? 'h1' ?>>
+    <?php endif; ?>
+
+    <?php if (!empty($this->contents)): ?>
+        <?php foreach ($this->contents as $faq): ?>
+            <<?= $faq['headline']['hl'] ?? 'h3' ?>><?= $faq['headline']['value'] ?? '' ?></<?= $faq['headline']['hl'] ?? 'h3' ?>>
+            <?= $faq['text'] ?? ''?>
+        <?php endforeach; ?>
+    <?php endif; ?>
 </section>

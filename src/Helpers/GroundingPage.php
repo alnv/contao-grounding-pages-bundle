@@ -59,13 +59,14 @@ class GroundingPage
                 }
 
                 switch ($field) {
-                    case 'headline':
+                    case 'contents':
                     case 'key_figures':
                     case 'faqs':
-                        $values = StringUtil::decodeEntities($val);
-                        $values = Toolkit::parseString($values);
-                        $val = StringUtil::deserialize($val, $values);
+                    case 'headline':
+                    case 'sub_headline':
+                        $val = Toolkit::parseRecursive(StringUtil::deserialize($val, true));
                         break;
+                    case 'anchor':
                     case 'text':
                         $val = Toolkit::parseString($val);
                         break;
