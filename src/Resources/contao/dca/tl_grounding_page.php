@@ -47,7 +47,7 @@ $GLOBALS['TL_DCA']['tl_grounding_page'] = [
         'global_operations' => []
     ],
     'palettes' => [
-        'default' => 'name,alias;globals;disable_cols'
+        'default' => 'name,alias;globals;disable_cols,stylesheet'
     ],
     'fields' => [
         'id' => [
@@ -111,6 +111,16 @@ $GLOBALS['TL_DCA']['tl_grounding_page'] = [
                 ]
             ],
             'sql' => 'blob NULL'
-        ]
+        ],
+        'stylesheet' => [
+            'inputType' => 'fileTree',
+            'eval' => [
+                'filesOnly' => true,
+                'extensions' => 'scss',
+                'fieldType' => 'radio',
+                'tl_class' => 'clr'
+            ],
+            'sql' => 'blob NULL'
+        ],
     ]
 ];

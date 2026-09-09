@@ -3,7 +3,9 @@
 namespace Alnv\ContaoGroundingPagesBundle\EventListener;
 
 use Alnv\ContaoGroundingPagesBundle\Helpers\GroundingPage;
+use Contao\Combiner;
 use Contao\Input;
+use Contao\FilesModel;
 use Contao\LayoutModel;
 use Contao\PageModel;
 use Contao\PageRegular;
@@ -32,5 +34,10 @@ class GetPageLayoutListener
         }
 
         $layout->modules = \serialize($modules);
+        if ($objFile = FilesModel::findByUuid($gSite['stylesheet'] ?? '')) {
+            $combiner = new Combiner();
+            $combiner->add($objFile->path);
+            $GLOBALS['TL_HEAD']['gSiteTheme'] = '<link href="' . $combiner->getCombinedFile() . '" rel="stylesheet" />';
+        }
     }
 }

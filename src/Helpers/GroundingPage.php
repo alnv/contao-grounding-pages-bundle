@@ -45,6 +45,7 @@ class GroundingPage
         $data['structured_data'] = StringUtil::decodeEntities(Toolkit::parseSimpleTokens($gSite->structured_data ?: '', $GLOBALS['GP_GLOBALS']));
         $data['description'] = Toolkit::parseString($gSite->description);
         $data['disable_cols'] = StringUtil::deserialize($gPage->disable_cols, true);
+        $data['stylesheet'] = $gPage->stylesheet ? StringUtil::binToUuid($gPage->stylesheet) : '';
         $data['elements'] = [];
 
         $gElements = Database::getInstance()
