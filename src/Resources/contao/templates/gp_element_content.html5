@@ -1,6 +1,6 @@
 <section<?php if ($this->anchor): ?> id="<?= $this->anchor ?>"<?php endif; ?>>
     <?php if ($headline = $this->headline['value'] ?? ''): ?>
-        <<?= $this->headline['hl'] ?? 'h1' ?>><?= $headline ?></<?= $this->headline['hl'] ?? 'h1' ?>>
+        <<?= $this->headline['unit'] ?? 'h2' ?>><?= $headline ?></<?= $this->headline['unit'] ?? 'h2' ?>>
     <?php endif; ?>
 
     <?php if ($this->text): ?>
@@ -8,12 +8,12 @@
     <?php endif; ?>
 
     <?php if ($subheadline = $this->sub_headline['value'] ?? ''): ?>
-        <<?= $this->sub_headline['hl'] ?? 'h1' ?>><?= $subheadline ?></<?= $this->sub_headline['hl'] ?? 'h1' ?>>
+        <<?= $this->sub_headline['unit'] ?? 'h3' ?>><?= $subheadline ?></<?= $this->sub_headline['unit'] ?? 'h3' ?>>
     <?php endif; ?>
 
     <?php if (!empty($this->contents)): ?>
         <?php foreach ($this->contents as $faq): ?>
-            <<?= $faq['headline']['hl'] ?? 'h3' ?>><?= $faq['headline']['value'] ?? '' ?></<?= $faq['headline']['hl'] ?? 'h3' ?>>
+            <<?= $faq['headline']['unit'] ?? 'h4' ?>><?= $faq['headline']['value'] ?? '' ?></<?= $faq['headline']['unit'] ?? 'h4' ?>>
             <?= $faq['text'] ?? ''?>
         <?php endforeach; ?>
     <?php endif; ?>
