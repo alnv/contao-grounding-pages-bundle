@@ -13,3 +13,9 @@ services:
   Alnv\ContaoGroundingPagesBundle\InsertTags\GlobalsInertTag:
     tags:
       - { name: contao.hook, hook: replaceInsertTags }
+  Alnv\ContaoGroundingPagesBundle\EventListener\SitemapListener:
+    autowire: true
+    tags:
+      - name: kernel.event_listener
+        event: Contao\CoreBundle\Event\SitemapEvent
+        method: __invoke
