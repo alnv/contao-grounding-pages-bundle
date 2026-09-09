@@ -2,13 +2,10 @@
 
 namespace Alnv\ContaoGroundingPagesBundle\EventListener;
 
-use Contao\CoreBundle\Event\ContaoCoreEvents;
 use Contao\CoreBundle\Event\SitemapEvent;
 use Contao\Database;
 use Contao\PageModel;
-use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 
-#[AsEventListener(ContaoCoreEvents::SITEMAP)]
 class SitemapListener
 {
     public function __invoke(SitemapEvent $event): void
@@ -33,6 +30,7 @@ class SitemapListener
             $sites = Database::getInstance()
                 ->prepare('SELECT * FROM tl_grounding_page_site WHERE `pid`=? ORDER BY `sorting`')
                 ->execute($gPage->id);
+
             while ($sites->next()) {
                 $alias = $sites->alias;
                 if ($alias == 'index') {
@@ -40,7 +38,7 @@ class SitemapListener
                 }
 
                 try {
-                    $url = $glPage->getAbsoluteUrl($alias ? '/' . $alias : '');
+                    $url = $glPage->getAbsoluteUrl($alias ? ('/' . $alias) : '');
                 } catch (\Exception $e) {
                     continue;
                 }
