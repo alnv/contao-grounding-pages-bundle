@@ -26,7 +26,8 @@
     "ext-json": "*",
     "php": "^8.3",
     "contao/core-bundle": "~5.0",
-    "menatwork/contao-multicolumnwizard-bundle": "~3.0"
+    "menatwork/contao-multicolumnwizard-bundle": "~3.0",
+    "mvo/contao-group-widget": "^1.7"
   },
   "extra": {
     "contao-manager-plugin": "Alnv\\ContaoGroundingPagesBundle\\ContaoManager\\Plugin"

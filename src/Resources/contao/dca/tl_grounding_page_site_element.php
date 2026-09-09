@@ -176,30 +176,29 @@ $GLOBALS['TL_DCA']['tl_grounding_page_site_element'] = [
             'sql' => 'blob NULL'
         ],
         'contents' => [
-            'inputType' => 'multiColumnWizard',
-            'eval' => [
-                'decodeEntities' => true,
-                'tl_class' => 'clr',
-                'columnFields' => [
-                    'headline' => [
-                        'label' => &$GLOBALS['TL_LANG']['tl_grounding_page_site_element']['headline'],
-                        'inputType' => 'inputUnit',
-                        'options' => ['h3', 'h1', 'h2', 'h4', 'h5', 'h6'],
-                        'eval' => [
-                            'style' => 'width:50%'
-                        ]
-                    ],
-                    'text' => [
-                        'label' => &$GLOBALS['TL_LANG']['tl_grounding_page_site_element']['text'],
-                        'inputType' => 'textarea',
-                        'eval' => [
-                            'rte' => 'tinyMCE',
-                            'allowHtml' => true,
-                            'style' => 'width:50%'
-                        ]
+            'inputType' => 'group',
+            'palette' => ['headline', 'text'],
+            'fields' => [
+                'headline' => [
+                    'label' => &$GLOBALS['TL_LANG']['tl_grounding_page_site_element']['headline'],
+                    'inputType' => 'inputUnit',
+                    'options' => ['h3', 'h1', 'h2', 'h4', 'h5', 'h6'],
+                    'eval' => [
+                        'tl_class' => 'w50'
+                    ]
+                ],
+                'text' => [
+                    'label' => &$GLOBALS['TL_LANG']['tl_grounding_page_site_element']['text'],
+                    'inputType' => 'textarea',
+                    'eval' => [
+                        'rte' => 'tinyMCE',
+                        'allowHtml' => true,
+                        'tl_class' => 'clr'
                     ]
                 ]
             ],
+            'min' => 1,
+            'order' => true,
             'sql' => 'blob NULL'
         ]
     ]
