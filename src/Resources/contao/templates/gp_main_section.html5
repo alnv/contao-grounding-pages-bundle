@@ -1,8 +1,10 @@
 <?php if ($this->title): ?>
 <<?= $this->hl ?>><?= $this->title ?></<?= $this->hl ?>>
 <?php endif; ?>
+
 <?php if ($this->text): ?>
     <?= $this->text ?>
 <?php endif; ?>
+
 <?= $this->main ?>
 <?= $this->structured_data ?>
