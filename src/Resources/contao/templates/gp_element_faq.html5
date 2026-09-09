@@ -1,4 +1,4 @@
-<section<?php if ($this->anchor): ?> id=""<?php endif; ?>>
+<section<?php if ($this->anchor): ?> id="<?= $this->anchor ?>"<?php endif; ?>>
     <?php if ($headline = $this->headline['value'] ?? ''): ?>
         <<?= $this->headline['hl'] ?? 'h1' ?>><?= $headline ?></<?= $this->headline['hl'] ?? 'h1' ?>>
     <?php endif; ?>

@@ -39,11 +39,13 @@ class GroundingPage
             ->execute($gPage->id, $alias);
 
         $GLOBALS['GP_GLOBALS'] = $data['globals']; // for InsertTags or SimpleTokens
+        $headline = StringUtil::deserialize($gSite->headline, true);
 
-        $data['title'] = Toolkit::parseString(StringUtil::deserialize($gSite->headline)['value'] ?? '');
-        $data['hl'] = StringUtil::deserialize($gSite->headline)['hl'] ?? '';
+        $data['title'] = Toolkit::parseString($headline['value'] ?? '');
+        $data['hl'] = $headline['unit'] ?? '';
         $data['structured_data'] = StringUtil::decodeEntities(Toolkit::parseSimpleTokens($gSite->structured_data ?: '', $GLOBALS['GP_GLOBALS']));
         $data['description'] = Toolkit::parseString($gSite->description);
+        $data['text'] = Toolkit::parseString($gSite->text);
         $data['disable_cols'] = StringUtil::deserialize($gPage->disable_cols, true);
         $data['stylesheet'] = $gPage->stylesheet ? StringUtil::binToUuid($gPage->stylesheet) : '';
         $data['elements'] = [];

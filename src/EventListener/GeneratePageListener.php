@@ -22,8 +22,11 @@ class GeneratePageListener
         }
 
         $template = new FrontendTemplate('gp_main_section');
-        $template->structured_data = $gSite['structured_data'];
         $template->main = $main;
+
+        foreach ($gSite as $key => $val) {
+            $template->{$key} = $val;
+        }
 
         $pageRegular->Template->main = $template->parse();
     }

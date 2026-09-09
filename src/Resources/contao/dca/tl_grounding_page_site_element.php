@@ -109,7 +109,7 @@ $GLOBALS['TL_DCA']['tl_grounding_page_site_element'] = [
         ],
         'headline' => [
             'inputType' => 'inputUnit',
-            'options' => ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
+            'options' => ['h2', 'h1', 'h3', 'h4', 'h5', 'h6'],
             'eval' => [
                 'tl_class' => 'w50',
                 'allowHtml' => true
@@ -118,7 +118,7 @@ $GLOBALS['TL_DCA']['tl_grounding_page_site_element'] = [
         ],
         'sub_headline' => [
             'inputType' => 'inputUnit',
-            'options' => ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
+            'options' => ['h3', 'h1', 'h2', 'h4', 'h5', 'h6'],
             'eval' => [
                 'tl_class' => 'w50',
                 'allowHtml' => true
@@ -184,7 +184,7 @@ $GLOBALS['TL_DCA']['tl_grounding_page_site_element'] = [
                     'headline' => [
                         'label' => &$GLOBALS['TL_LANG']['tl_grounding_page_site_element']['headline'],
                         'inputType' => 'inputUnit',
-                        'options' => ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
+                        'options' => ['h3', 'h1', 'h2', 'h4', 'h5', 'h6'],
                         'eval' => [
                             'style' => 'width:50%'
                         ]
