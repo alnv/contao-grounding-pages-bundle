@@ -40,7 +40,7 @@ $GLOBALS['TL_DCA']['tl_grounding_page_site'] = [
     ],
     'palettes' => [
         '__selector__' => [],
-        'default' => 'name,alias;headline,description,text;structured_data'
+        'default' => 'name,alias;lastModified;headline,description,text;structured_data'
     ],
     'subpalettes' => [],
     'fields' => [
@@ -55,6 +55,15 @@ $GLOBALS['TL_DCA']['tl_grounding_page_site'] = [
         ],
         'tstamp' => [
             'sql' => ['type' => 'integer', 'notnull' => false, 'unsigned' => true, 'default' => 0]
+        ],
+        'lastModified' => [
+            'inputType' => 'text',
+            'eval' => [
+                'rgxp' => 'datim',
+                'datepicker' => true,
+                'tl_class' => 'w50 wizard'
+            ],
+            ['type' => 'string', 'length' => 10, 'default' => '', 'platformOptions' => ['collation' => 'ascii_bin']]
         ],
         'name' => [
             'inputType' => 'text',

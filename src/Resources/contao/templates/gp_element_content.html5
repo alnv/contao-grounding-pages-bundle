@@ -12,9 +12,11 @@
     <?php endif; ?>
 
     <?php if (!empty($this->contents)): ?>
-        <?php foreach ($this->contents as $faq): ?>
-            <<?= $faq['headline']['unit'] ?? 'h4' ?>><?= $faq['headline']['value'] ?? '' ?></<?= $faq['headline']['unit'] ?? 'h4' ?>>
-            <?= $faq['text'] ?? ''?>
+        <?php foreach ($this->contents as $content): ?>
+            <?php if ($val = $content['headline']['value'] ?? ''): ?>
+            <<?= $content['headline']['unit'] ?? 'h4' ?>><?= $val ?></<?= $content['headline']['unit'] ?? 'h4' ?>>
+            <?php endif; ?>
+            <?= $content['text'] ?? ''?>
         <?php endforeach; ?>
     <?php endif; ?>
 </section>

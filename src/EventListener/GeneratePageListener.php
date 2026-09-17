@@ -14,6 +14,10 @@ class GeneratePageListener
 
     public function __invoke(PageModel $page, LayoutModel $layout, PageRegular &$pageRegular): void
     {
+        if ($page->type !== 'grounding' || !$page->grounding_page) {
+            return;
+        }
+
         $gSite = GroundingPage::getGroundingPage($page->grounding_page, Input::xssClean($_GET['auto_item'] ?? ''));
 
         $main = '';
