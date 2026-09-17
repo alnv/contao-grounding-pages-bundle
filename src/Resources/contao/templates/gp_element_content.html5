@@ -10,11 +10,13 @@
     <?php if ($subheadline = $this->sub_headline['value'] ?? ''): ?>
         <<?= $this->sub_headline['unit'] ?? 'h3' ?>><?= $subheadline ?></<?= $this->sub_headline['unit'] ?? 'h3' ?>>
     <?php endif; ?>
-
     <?php if (!empty($this->contents)): ?>
         <?php foreach ($this->contents as $content): ?>
-            <?php if ($val = $content['headline']['value'] ?? ''): ?>
-            <<?= $content['headline']['unit'] ?? 'h4' ?>><?= $val ?></<?= $content['headline']['unit'] ?? 'h4' ?>>
+            <?php
+                $headline = \Contao\StringUtil::deserialize($content['headline'], true);
+            ?>
+            <?php if ($val = $headline['value'] ?? ''): ?>
+            <<?= $headline['unit'] ?? 'h4' ?>><?= $val ?></<?= $headline['unit'] ?? 'h4' ?>>
             <?php endif; ?>
             <?= $content['text'] ?? ''?>
         <?php endforeach; ?>

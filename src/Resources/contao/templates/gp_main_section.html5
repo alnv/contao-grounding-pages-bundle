@@ -7,4 +7,6 @@
 <?php endif; ?>
 
 <?= $this->main ?>
+<p class="stand">Zuletzt redaktionell geprüft: 14.08.2026 · Verantwortlich: Andreas Teichmann-Potreck</p>
+
 <?= $this->structured_data ?>
