@@ -63,7 +63,7 @@ $GLOBALS['TL_DCA']['tl_grounding_page_site'] = [
                 'datepicker' => true,
                 'tl_class' => 'w50 wizard'
             ],
-            ['type' => 'string', 'length' => 10, 'default' => '', 'platformOptions' => ['collation' => 'ascii_bin']]
+            'sql' => ['type' => 'string', 'length' => 10, 'default' => '', 'platformOptions' => ['collation' => 'ascii_bin']]
         ],
         'name' => [
             'inputType' => 'text',
