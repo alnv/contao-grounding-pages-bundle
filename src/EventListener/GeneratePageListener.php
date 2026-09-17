@@ -37,7 +37,7 @@ class GeneratePageListener
 
         try {
             $canonicalUrl = $page->getAbsoluteUrl($gSite['alias'] ? ('/' . $gSite['alias']) : '');
-            $GLOBALS['canonical'] = '<link rel="canonical" href="' . $canonicalUrl . '">';
+            $GLOBALS['TL_HEAD']['canonical'] = '<link rel="canonical" href="' . $canonicalUrl . '">';
         } catch (\Exception $e) {
         }
     }
