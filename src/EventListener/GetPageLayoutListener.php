@@ -18,8 +18,10 @@ class GetPageLayoutListener
         if ($page->type !== 'grounding' || !$page->grounding_page) {
             return;
         }
-        
+
         $gSite = GroundingPage::getGroundingPage($page->grounding_page, Input::xssClean($_GET['auto_item'] ?? ''));
+
+        $page->enableCanonical = false;
 
         $layout->titleTag = '{{page::pageTitle}}';
         $layout->viewport = 'width=device-width, initial-scale=1';

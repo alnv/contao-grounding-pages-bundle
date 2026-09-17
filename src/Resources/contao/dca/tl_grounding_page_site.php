@@ -60,6 +60,7 @@ $GLOBALS['TL_DCA']['tl_grounding_page_site'] = [
             'inputType' => 'text',
             'eval' => [
                 'rgxp' => 'datim',
+                'mandatory' => true,
                 'datepicker' => true,
                 'tl_class' => 'w50 wizard'
             ],

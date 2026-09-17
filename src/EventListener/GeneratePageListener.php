@@ -31,7 +31,14 @@ class GeneratePageListener
         foreach ($gSite as $key => $val) {
             $template->{$key} = $val;
         }
+        $template->lastModified = ($gSite['lastModified'] ?? 0) ? \date('d.m.Y', $gSite['lastModified']) : '';
 
         $pageRegular->Template->main = $template->parse();
+
+        try {
+            $canonicalUrl = $page->getAbsoluteUrl($gSite['alias'] ? ('/' . $gSite['alias']) : '');
+            $GLOBALS['canonical'] = '<link rel="canonical" href="' . $canonicalUrl . '">';
+        } catch (\Exception $e) {
+        }
     }
 }

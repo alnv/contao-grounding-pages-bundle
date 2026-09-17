@@ -38,9 +38,12 @@ class GroundingPage
             ->limit(1)
             ->execute($gPage->id, $alias);
 
+        $data['globals']['_lastModified'] = $gSite->lastModified ? \date('d.m.Y', $gSite->lastModified) : '';
         $GLOBALS['GP_GLOBALS'] = $data['globals']; // for InsertTags or SimpleTokens
+
         $headline = StringUtil::deserialize($gSite->headline, true);
 
+        $data['alias'] = $alias === 'index' ? '' : $alias;
         $data['title'] = Toolkit::parseString($headline['value'] ?? '');
         $data['hl'] = $headline['unit'] ?? '';
         $data['structured_data'] = StringUtil::decodeEntities(Toolkit::parseSimpleTokens($gSite->structured_data ?: '', $GLOBALS['GP_GLOBALS']));
@@ -49,6 +52,7 @@ class GroundingPage
         $data['disable_cols'] = StringUtil::deserialize($gPage->disable_cols, true);
         $data['stylesheet'] = $gPage->stylesheet ? StringUtil::binToUuid($gPage->stylesheet) : '';
         $data['elements'] = [];
+        $data['lastModified'] = $gSite->lastModified;
 
         $gElements = Database::getInstance()
             ->prepare('SELECT * FROM tl_grounding_page_site_element WHERE pid=? ORDER BY sorting')
