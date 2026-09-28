@@ -37,6 +37,10 @@ class SitemapListener
                     $alias = '';
                 }
 
+                if (!$alias) {
+                    continue;
+                }
+
                 try {
                     $url = $glPage->getAbsoluteUrl($alias ? ('/' . $alias) : '');
                 } catch (\Exception $e) {

@@ -13,7 +13,6 @@ class GroundingPageController
 {
     public function __invoke(Request $request, PageModel $pageModel): Response
     {
-
         $pageModel->robots = 'index,follow';
         $pageModel->canonicalLink = $pageModel->getAbsoluteUrl(); // todo  add url
         $pageModel->canonicalKeepParams = '';
