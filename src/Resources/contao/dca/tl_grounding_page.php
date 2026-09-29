@@ -33,7 +33,7 @@ $GLOBALS['TL_DCA']['tl_grounding_page'] = [
             'children' => [
                 'primary' => true,
                 'href' => 'table=tl_grounding_page_site',
-                'icon' => 'children.svg'
+                'icon' => 'header.svg'
             ],
             'delete' => [
                 'href' => 'act=delete',

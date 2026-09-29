@@ -7,6 +7,6 @@
 <?php endif; ?>
 
 <?= $this->main ?>
-<p class="stand">Zuletzt redaktionell geprüft: <?= $this->lastModified ?> · Verantwortlich: Andreas Teichmann-Potreck</p>
+<p class="stand">Zuletzt redaktionell geprüft: <?= $this->lastModified ?> · Verantwortlich: Andreas Teichmann-Potreck</p><!-- todo: make variable name -->
 
 <?= $this->structured_data ?>

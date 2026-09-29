@@ -34,7 +34,7 @@ $GLOBALS['TL_DCA']['tl_grounding_page_site'] = [
             'children' => [
                 'primary' => true,
                 'href' => 'table=tl_grounding_page_site_element',
-                'icon' => 'children.svg'
+                'icon' => 'header.svg'
             ],
             // 'copy',
             'delete' => [
@@ -76,7 +76,7 @@ $GLOBALS['TL_DCA']['tl_grounding_page_site'] = [
                 'datepicker' => true,
                 'tl_class' => 'w50 wizard'
             ],
-            'sql' => ['type' => 'integer', 'notnull' => false, 'unsigned' => true, 'default' => 0]
+            'sql' => ['type' => 'integer', 'notnull' => false, 'unsigned' => true]
         ],
         'name' => [
             'inputType' => 'text',
