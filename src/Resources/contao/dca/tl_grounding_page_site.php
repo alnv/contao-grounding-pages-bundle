@@ -5,6 +5,7 @@ use Contao\DC_Table;
 $GLOBALS['TL_DCA']['tl_grounding_page_site'] = [
     'config' => [
         'dataContainer' => DC_Table::class,
+        'enableVersioning' => true,
         'ptable' => 'tl_grounding_page',
         'ctable' => ['tl_grounding_page_site_element'],
         'sql' => [
@@ -25,16 +26,27 @@ $GLOBALS['TL_DCA']['tl_grounding_page_site'] = [
         ],
         'label' => [],
         'operations' => [
-            'edit',
+            'edit' => [
+                'primary' => true,
+                'href' => 'act=edit',
+                'icon' => 'edit.svg'
+            ],
             'children' => [
                 'primary' => true,
                 'href' => 'table=tl_grounding_page_site_element',
                 'icon' => 'children.svg'
             ],
-            'copy',
-            'delete',
-            'toggle',
-            'show'
+            // 'copy',
+            'delete' => [
+                'href' => 'act=delete',
+                'icon' => 'delete.svg',
+                'attributes' => 'onclick="if(!confirm(\'' . ($GLOBALS['TL_LANG']['MSC']['deleteConfirm'] ?? '') . '\'))return false;Backend.getScrollOffset()"'
+            ],
+            // 'toggle',
+            'show' => [
+                'href' => 'act=show',
+                'icon' => 'show.svg'
+            ]
         ],
         'global_operations' => []
     ],
@@ -64,7 +76,7 @@ $GLOBALS['TL_DCA']['tl_grounding_page_site'] = [
                 'datepicker' => true,
                 'tl_class' => 'w50 wizard'
             ],
-            'sql' => ['type' => 'string', 'length' => 10, 'default' => '', 'platformOptions' => ['collation' => 'ascii_bin']]
+            'sql' => ['type' => 'integer', 'notnull' => false, 'unsigned' => true, 'default' => 0]
         ],
         'name' => [
             'inputType' => 'text',

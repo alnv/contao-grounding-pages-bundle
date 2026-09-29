@@ -5,6 +5,7 @@ use Contao\DC_Table;
 $GLOBALS['TL_DCA']['tl_grounding_page_site_element'] = [
     'config' => [
         'dataContainer' => DC_Table::class,
+        'enableVersioning' => true,
         'ptable' => 'tl_grounding_page_site',
         'sql' => [
             'keys' => [
@@ -74,7 +75,7 @@ $GLOBALS['TL_DCA']['tl_grounding_page_site_element'] = [
                 'submitOnChange' => true,
                 'includeBlankOption' => true
             ],
-            'reference' => &$GLOBALS['TL_LANG']['tl_suite_modules']['types'],
+            'reference' => &$GLOBALS['TL_LANG']['tl_grounding_page_site_element']['types'],
             'options_callback' => function () {
                 return [
                     'key_figures' => 'Kerndaten',

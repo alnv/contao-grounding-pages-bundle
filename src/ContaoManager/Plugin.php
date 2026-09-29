@@ -10,20 +10,17 @@ use Contao\ManagerPlugin\Bundle\Parser\ParserInterface;
 use Contao\ManagerPlugin\Routing\RoutingPluginInterface;
 use Symfony\Component\Config\Loader\LoaderResolverInterface;
 use Symfony\Component\HttpKernel\KernelInterface;
-use Terminal42\DcawizardBundle\Terminal42DcawizardBundle;
 
 class Plugin implements BundlePluginInterface, RoutingPluginInterface
 {
 
     public function getBundles(ParserInterface $parser): array
     {
-
         return [
             BundleConfig::create(AlnvContaoGroundingPagesBundle::class)
                 ->setReplace(['contao-grounding-pages-bundle'])
                 ->setLoadAfter([
-                    ContaoCoreBundle::class,
-                    Terminal42DcawizardBundle::class
+                    ContaoCoreBundle::class
                 ])
         ];
     }

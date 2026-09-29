@@ -2,6 +2,7 @@
 
 namespace Alnv\ContaoGroundingPagesBundle\EventListener;
 
+use Alnv\ContaoGroundingPagesBundle\Helpers\Toolkit;
 use Contao\CoreBundle\Event\SitemapEvent;
 use Contao\Database;
 use Contao\PageModel;
@@ -10,49 +11,13 @@ class SitemapListener
 {
     public function __invoke(SitemapEvent $event): void
     {
-        $gPages = Database::getInstance()
-            ->prepare('SELECT * FROM tl_page WHERE `type`=?')
-            ->execute('grounding');
+        if (!\method_exists($event, 'addUrlToDefaultUrlSet')) {
+            return;
+        }
 
-        $urls = [];
-        while ($gPages->next()) {
-            $glPage = PageModel::findByPk($gPages->id);
-
-            $gPage = Database::getInstance()
-                ->prepare('SELECT * FROM tl_grounding_page WHERE `id`=?')
-                ->limit(1)
-                ->execute($gPages->grounding_page);
-
-            if (!$gPage->numRows) {
-                continue;
-            }
-
-            $sites = Database::getInstance()
-                ->prepare('SELECT * FROM tl_grounding_page_site WHERE `pid`=? ORDER BY `sorting`')
-                ->execute($gPage->id);
-
-            while ($sites->next()) {
-                $alias = $sites->alias;
-                if ($alias == 'index') {
-                    $alias = '';
-                }
-
-                if (!$alias) {
-                    continue;
-                }
-
-                try {
-                    $url = $glPage->getAbsoluteUrl($alias ? ('/' . $alias) : '');
-                } catch (\Exception $e) {
-                    continue;
-                }
-
-                if (!\in_array($url, $urls)) {
-                    $event->addUrlToDefaultUrlSet($url);
-                }
-
-                $urls[] = $url;
-            }
+        $urls = Toolkit::getXmlPageUrls();
+        foreach ($urls as $url) {
+            $event->addUrlToDefaultUrlSet($url);
         }
     }
 }

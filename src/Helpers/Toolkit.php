@@ -2,6 +2,8 @@
 
 namespace Alnv\ContaoGroundingPagesBundle\Helpers;
 
+use Contao\Database;
+use Contao\PageModel;
 use Contao\StringUtil;
 use Contao\System;
 
@@ -54,5 +56,51 @@ class Toolkit
         }
 
         return $parser->replaceInline((string)$strBuffer);
+    }
+
+    public static function getXmlPageUrls(): array
+    {
+        $gPages = Database::getInstance()
+            ->prepare('SELECT * FROM tl_page WHERE `type`=?')
+            ->execute('grounding');
+
+        $urls = [];
+        while ($gPages->next()) {
+            $glPage = PageModel::findByPk($gPages->id);
+
+            $gPage = Database::getInstance()
+                ->prepare('SELECT * FROM tl_grounding_page WHERE `id`=?')
+                ->limit(1)
+                ->execute($gPages->grounding_page);
+
+            if (!$gPage->numRows) {
+                continue;
+            }
+
+            $sites = Database::getInstance()
+                ->prepare('SELECT * FROM tl_grounding_page_site WHERE `pid`=? ORDER BY `sorting`')
+                ->execute($gPage->id);
+
+            while ($sites->next()) {
+                $alias = $sites->alias;
+                if ($alias == 'index') {
+                    $alias = '';
+                }
+
+                if (!$alias) {
+                    continue;
+                }
+
+                try {
+                    $url = $glPage->getAbsoluteUrl('/' . $alias);
+                } catch (\Exception $e) {
+                    continue;
+                }
+
+                $urls[] = $url;
+            }
+        }
+
+        return \array_values(\array_unique($urls));
     }
 }

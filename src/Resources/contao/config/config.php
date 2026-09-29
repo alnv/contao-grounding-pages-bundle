@@ -1,6 +1,7 @@
 <?php
 
 use Contao\ArrayUtil;
+use Alnv\ContaoGroundingPagesBundle\EventListener\LegacySitemapListener;
 
 ArrayUtil::arrayInsert($GLOBALS['BE_MOD'], 1, [
     'grounding_page_bundle' => [
@@ -14,3 +15,5 @@ ArrayUtil::arrayInsert($GLOBALS['BE_MOD'], 1, [
         ]
     ]
 ]);
+
+$GLOBALS['TL_HOOKS']['getSearchablePages'][] = [LegacySitemapListener::class, 'getSearchablePages'];

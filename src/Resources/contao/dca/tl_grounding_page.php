@@ -7,6 +7,7 @@ use Contao\StringUtil;
 $GLOBALS['TL_DCA']['tl_grounding_page'] = [
     'config' => [
         'dataContainer' => DC_Table::class,
+        'enableVersioning' => true,
         'ctable' => ['tl_grounding_page_site'],
         'sql' => [
             'keys' => [

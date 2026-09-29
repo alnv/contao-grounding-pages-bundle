@@ -7,7 +7,7 @@ use Contao\Input;
 use Contao\LayoutModel;
 use Contao\PageModel;
 use Contao\PageRegular;
-use PCT\CustomElements\Core\FrontendTemplate;
+use Contao\FrontendTemplate;
 
 class GeneratePageListener
 {
