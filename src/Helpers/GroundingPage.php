@@ -4,7 +4,7 @@ namespace Alnv\ContaoGroundingPagesBundle\Helpers;
 
 use Contao\Database;
 use Contao\StringUtil;
-use PCT\CustomElements\Core\FrontendTemplate;
+use Contao\FrontendTemplate;
 
 class GroundingPage
 {

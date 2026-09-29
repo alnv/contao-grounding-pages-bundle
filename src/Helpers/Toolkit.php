@@ -87,10 +87,6 @@ class Toolkit
                     $alias = '';
                 }
 
-                if (!$alias) {
-                    continue;
-                }
-
                 try {
                     $url = $glPage->getAbsoluteUrl('/' . $alias);
                 } catch (\Exception $e) {
