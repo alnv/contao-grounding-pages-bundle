@@ -41,6 +41,8 @@ class Toolkit
 
     public static function parseSimpleTokens($strString, $arrData, $blnAllowHtml = true)
     {
+        $strString = StringUtil::decodeEntities($strString);
+        
         return System::getContainer()
             ->get('contao.string.simple_token_parser')
             ->parse($strString, $arrData, $blnAllowHtml);
