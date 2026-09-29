@@ -38,7 +38,8 @@ class GroundingPage
             ->limit(1)
             ->execute($gPage->id, $alias);
 
-        $data['globals']['_lastModified'] = $gSite->lastModified ? \date('d.m.Y', $gSite->lastModified) : '';
+        $data['globals']['_lastModified'] = $gSite->lastModified ? \date('d.m.Y', $gSite->lastModified) : 0;
+        $data['globals']['_lastModifiedOrigin'] = $gSite->lastModified ? $gSite->lastModified : 0;
         $GLOBALS['GP_GLOBALS'] = $data['globals']; // for InsertTags or SimpleTokens
 
         $headline = StringUtil::deserialize($gSite->headline, true);
@@ -46,7 +47,7 @@ class GroundingPage
         $data['alias'] = $alias === 'index' ? '' : $alias;
         $data['title'] = Toolkit::parseString($headline['value'] ?? '');
         $data['hl'] = $headline['unit'] ?? '';
-        $data['structured_data'] = StringUtil::decodeEntities(Toolkit::parseSimpleTokens($gSite->structured_data ?: '', $GLOBALS['GP_GLOBALS']));
+        $data['structured_data'] = StringUtil::decodeEntities(Toolkit::parseSimpleTokens($gSite->structured_data ?: '', static::modifyGlobalsForStructuredData($GLOBALS['GP_GLOBALS'])));
         $data['description'] = Toolkit::parseString($gSite->description);
         $data['text'] = Toolkit::parseString($gSite->text);
         $data['disable_cols'] = StringUtil::deserialize($gPage->disable_cols, true);
@@ -86,6 +87,15 @@ class GroundingPage
         }
 
         return $data;
+    }
+
+    public static function modifyGlobalsForStructuredData($globals): array
+    {
+        if (isset($globals['_lastModifiedOrigin']) && $globals['_lastModifiedOrigin']) {
+            $globals['_lastModified'] = \date('Y-m-d', $globals['_lastModifiedOrigin']);
+        }
+
+        return $globals;
     }
 
     public static function parseElement($element): string
