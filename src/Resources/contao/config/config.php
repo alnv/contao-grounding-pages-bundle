@@ -16,4 +16,4 @@ ArrayUtil::arrayInsert($GLOBALS['BE_MOD'], 1, [
     ]
 ]);
 
-$GLOBALS['TL_HOOKS']['getSearchablePages'][] = [LegacySitemapListener::class, 'getSearchablePages'];
+$GLOBALS['TL_HOOKS']['getSearchablePages'][] = [LegacySitemapListener::class, 'getSearchablePages']; // legacy

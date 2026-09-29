@@ -48,6 +48,7 @@ class GroundingPage
         $data['title'] = Toolkit::parseString($headline['value'] ?? '');
         $data['hl'] = $headline['unit'] ?? '';
         $data['structured_data'] = StringUtil::decodeEntities(Toolkit::parseSimpleTokens($gSite->structured_data ?: '', static::modifyGlobalsForStructuredData($GLOBALS['GP_GLOBALS'])));
+        
         $data['description'] = Toolkit::parseString($gSite->description);
         $data['text'] = Toolkit::parseString($gSite->text);
         $data['disable_cols'] = StringUtil::deserialize($gPage->disable_cols, true);

@@ -4,8 +4,6 @@ namespace Alnv\ContaoGroundingPagesBundle\EventListener;
 
 use Alnv\ContaoGroundingPagesBundle\Helpers\Toolkit;
 use Contao\CoreBundle\Event\SitemapEvent;
-use Contao\Database;
-use Contao\PageModel;
 
 class SitemapListener
 {
